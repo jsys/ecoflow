@@ -33,7 +33,7 @@ if (isset($_GET['sn'])) {
 	} else {
 		// On récupère toutes les infos du périphérique
 		// Exemple sn=HW513000SF767194
-		$url = $url = 'https://api-e.ecoflow.com/iot-open/sign/device/quota/all?sn=' . $sn;
+		$url = 'https://api-e.ecoflow.com/iot-open/sign/device/quota/all?sn=' . $sn;
 		$content = ['sn' => $sn];
 	}
 } else {
