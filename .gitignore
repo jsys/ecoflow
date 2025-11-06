@@ -1,0 +1,15 @@
+# Fichiers de configuration contenant des secrets
+config.php
+
+# Logs
+*.log
+ecoflow_errors.log
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*

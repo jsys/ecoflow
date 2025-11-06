@@ -1,0 +1,40 @@
+# Protection des fichiers sensibles
+<FilesMatch "^(config\.php|config\.example\.php|ecoflow_errors\.log|\.git.*)$">
+    Require all denied
+</FilesMatch>
+
+# Protection supplémentaire pour les fichiers de configuration
+<Files "config.php">
+    Require all denied
+</Files>
+
+# Empêcher le listing des répertoires
+Options -Indexes
+
+# Désactiver l'exécution de scripts dans les uploads (si applicable)
+<Directory "uploads">
+    php_flag engine off
+</Directory>
+
+# Headers de sécurité supplémentaires
+<IfModule mod_headers.c>
+    # Empêcher le clickjacking
+    Header always set X-Frame-Options "DENY"
+
+    # Protection XSS
+    Header always set X-XSS-Protection "1; mode=block"
+
+    # Empêcher le sniffing MIME
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Content Security Policy basique
+    Header always set Content-Security-Policy "default-src 'self'"
+
+    # Référrer policy
+    Header always set Referrer-Policy "no-referrer-when-downgrade"
+</IfModule>
+
+# Bloquer l'accès aux fichiers cachés (comme .git, .env, etc.)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
